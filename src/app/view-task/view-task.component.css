@@ -1,0 +1,8 @@
+.jumbotron {
+  max-height: 20px;
+}
+
+.table td,
+th {
+  text-align: center;
+}

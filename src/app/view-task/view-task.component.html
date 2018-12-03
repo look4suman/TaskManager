@@ -2,47 +2,67 @@
   <div class="form-group">
     <label class=" col-sm-2" for="task">Task:</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="task" id="task">
+      <input type="text" class="form-control" name="task" id="task" [(ngModel)]="taskSearch">
     </div>
     <label class=" col-sm-2" for="ParentTask">Parent Task:</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="ParentTask" id="ParentTask">
+      <input type="text" class="form-control" name="ParentTask" id="ParentTask" [(ngModel)]="parentTaskSearch">
     </div>
   </div>
   <div class="form-group">
-    <label class=" col-sm-1" for="p1">Priority Form:</label>
+    <label class=" col-sm-1" for="p1">Priority From:</label>
     <div class="col-sm-2">
-      <input type="text" class="form-control" name="p1" id="p1">
+      <input type="text" class="form-control" name="p1" id="p1" [(ngModel)]="priorityFromSearch">
     </div>
     <label class=" col-sm-1" for="p2">Priority To:</label>
     <div class="col-sm-2">
-      <input type="text" class="form-control" name="p2" id="p2">
+      <input type="text" class="form-control" name="p2" id="p2" [(ngModel)]="priorityToSearch">
     </div>
     <label class=" col-sm-1" for="s">Start Date:</label>
     <div class="col-sm-2">
-      <input type="text" class="form-control" name="s" id="s">
+      <input type="text" class="form-control" name="s" id="s" [(ngModel)]="startDateSearch">
     </div>
     <label class=" col-sm-1" for="s1">End Date:</label>
     <div class="col-sm-2">
-      <input type="text" class="form-control" name="s1" id="s1">
+      <input type="text" class="form-control" name="s1" id="s1" [(ngModel)]="endDateSearch">
     </div>
   </div>
 </div>
-<ul class="list-group">
-  <li class="list-group-item">
-    <div class="form-horizontal">
-      <div class="form-group">
-        <table class="table">
-          <thead>
-            <th>Task</th>
-            <th>Parent Task</th>
-            <th>Priority</th>
-            <th>Start</th>
-            <th>End</th>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </div>
-  </li>
-</ul>
+<div class="form-horizontal form-group">
+  <table class="table">
+    <thead>
+      <th>Task</th>
+      <th>Parent Task</th>
+      <th>Priority</th>
+      <th>Start</th>
+      <th>End</th>
+      <th></th>
+      <th></th>
+    </thead>
+    <tbody *ngFor="let task of tasks">
+      <tr>
+        <td>
+          <div class="jumbotron">{{task.Task}}</div>
+        </td>
+        <td>
+          <div class="jumbotron">{{task.ParentTask}}</div>
+        </td>
+        <td>
+          <div>{{task.Priority}}</div>
+        </td>
+        <td>
+          <div>{{task.StartDate | date:'dd/MM/yyyy'}}</div>
+        </td>
+        <td>
+          <div>{{task.EndDate | date:'dd/MM/yyyy'}}</div>
+        </td>
+        <td>
+          <input type="button" value="Edit" style="background:grey ;font-weight:bolder" class="btn form-control button">
+        </td>
+        <td>
+          <input type="button" value="End Task" style="background:grey ;font-weight:bolder" class="btn form-control button">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
