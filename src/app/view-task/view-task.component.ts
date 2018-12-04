@@ -14,10 +14,10 @@ export class ViewTaskComponent implements OnInit {
 
   taskSearch: string;
   parentTaskSearch: string;
-  priorityFromSearch: string;
-  priorityToSearch: string;
-  startDateSearch: string;
-  endDateSearch: string;
+  priorityFromSearch: number;
+  priorityToSearch: number;
+  startDateSearch: Date;
+  endDateSearch: Date;
 
   tasks: TaskModel[];
 

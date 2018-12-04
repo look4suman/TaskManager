@@ -9,6 +9,7 @@ import { AddTaskComponent } from './add-task/add-task.component';
 import { ViewTaskComponent } from './view-task/view-task.component';
 import { UpdateTaskComponent } from './update-task/update-task.component';
 import { MenuComponent } from './menu/menu.component';
+import { FilterPipe } from './pipe/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MenuComponent } from './menu/menu.component';
     AddTaskComponent,
     ViewTaskComponent,
     UpdateTaskComponent,
-    MenuComponent
+    MenuComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

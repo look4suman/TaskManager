@@ -12,19 +12,19 @@
   <div class="form-group">
     <label class=" col-sm-1" for="p1">Priority From:</label>
     <div class="col-sm-2">
-      <input type="text" class="form-control" name="p1" id="p1" [(ngModel)]="priorityFromSearch">
+      <input type="number" class="form-control" name="p1" id="p1" [(ngModel)]="priorityFromSearch">
     </div>
     <label class=" col-sm-1" for="p2">Priority To:</label>
     <div class="col-sm-2">
-      <input type="text" class="form-control" name="p2" id="p2" [(ngModel)]="priorityToSearch">
+      <input type="number" class="form-control" name="p2" id="p2" [(ngModel)]="priorityToSearch">
     </div>
     <label class=" col-sm-1" for="s">Start Date:</label>
     <div class="col-sm-2">
-      <input type="text" class="form-control" name="s" id="s" [(ngModel)]="startDateSearch">
+      <input type="date" class="form-control" name="s" id="s" [(ngModel)]="startDateSearch">
     </div>
     <label class=" col-sm-1" for="s1">End Date:</label>
     <div class="col-sm-2">
-      <input type="text" class="form-control" name="s1" id="s1" [(ngModel)]="endDateSearch">
+      <input type="date" class="form-control" name="s1" id="s1" [(ngModel)]="endDateSearch">
     </div>
   </div>
 </div>
@@ -39,7 +39,7 @@
       <th></th>
       <th></th>
     </thead>
-    <tbody *ngFor="let task of tasks">
+    <tbody *ngFor="let task of tasks | filter : taskSearch : parentTaskSearch : priorityFromSearch : priorityToSearch : startDateSearch : endDateSearch">
       <tr>
         <td>
           <div class="jumbotron">{{task.Task}}</div>
