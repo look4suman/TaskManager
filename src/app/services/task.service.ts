@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { TaskModel } from '../model/task-model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,21 +15,16 @@ export class TaskService {
 
   getTasks(): Observable<TaskModel[]> {
     let url = this.baseUrl + 'getTask';
-    return this.http.get<TaskModel[]>(url)
-      .pipe(
-        catchError(this.handleError('getTasks', []))
-      );
+    return this.http.get<TaskModel[]>(url);
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      this.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
+  getTaskById(Id: number): Observable<TaskModel> {
+    let url = this.baseUrl + 'Task/' + Id;
+    return this.http.get<TaskModel>(url);
   }
 
-  private log(message: string) {
-    //this.messageService.add(`HeroService: ${message}`);
+  addTask(model: TaskModel): Observable<object> {
+    let url = this.baseUrl + 'AddTask';
+    return this.http.post(url, model);
   }
 }

@@ -57,7 +57,8 @@
           <div>{{task.EndDate | date:'dd/MM/yyyy'}}</div>
         </td>
         <td>
-          <input type="button" value="Edit" style="background:grey ;font-weight:bolder" class="btn form-control button">
+          <input type="button" value="Edit" style="background:grey ;font-weight:bolder" class="btn form-control button"
+            (click)="redirect(task.TaskId)">
         </td>
         <td>
           <input type="button" value="End Task" style="background:grey ;font-weight:bolder" class="btn form-control button">

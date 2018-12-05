@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskModel } from '../model/task-model';
 import { TaskService } from '../services/task.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-task',
@@ -9,7 +10,7 @@ import { TaskService } from '../services/task.service';
 })
 export class ViewTaskComponent implements OnInit {
 
-  constructor(private service: TaskService) {
+  constructor(private service: TaskService, private router: Router) {
   }
 
   taskSearch: string;
@@ -28,6 +29,10 @@ export class ViewTaskComponent implements OnInit {
   getTasks(): void {
     this.service.getTasks()
       .subscribe(o => this.tasks = o);
+  }
+
+  redirect(taskId: number): void {
+    this.router.navigate(['./update/' + taskId]);
   }
 
 }
