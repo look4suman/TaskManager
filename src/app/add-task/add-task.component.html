@@ -1,25 +1,26 @@
 <div>
   <div style="padding-top:10px">
-    <form class="form-horizontal" (ngSubmit)="onSubmit(registerForm)" [formGroup]="registerForm">
+    <form class="form-horizontal" (ngSubmit)="onSubmit(addTaskForm)" [formGroup]="addTaskForm">
       <div class="form-group">
         <label class="control-label col-sm-2" for="task">Task:</label>
         <div class="col-sm-6">
           <input type="text" class="form-control" name="task" id="task" placeholder="Enter Task Name " formControlName="Task">
         </div>
-        <div *ngIf="submitted && f.Task.errors" class="col-sm-4 invalid-feedback">
-          <div *ngIf="f.Task.errors.required">Task is required</div>
-        </div>
+        <div *ngIf="formSubmitted && f.Task.errors" class="col-sm-4 invalid-feedback">Task is required</div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="priority">Priority:</label>
         <div class="col-sm-6">
           <input type="range" class="form-control" min="0" max="30" id="priority" formControlName="Priority">
         </div>
+        <div *ngIf="formSubmitted && f.Priority.errors" class="col-sm-4 invalid-feedback">Priority is required</div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="ptask">Parent Task:</label>
         <div class="col-sm-6">
           <select id="ParentTask" class="form-control" formControlName="ParentTask">
+            <option [ngValue]="null">Select Parent</option>
+            <option *ngFor="let t of tasks" [ngValue]="t.Task">{{ t.Task }}</option>
           </select>
         </div>
       </div>
@@ -28,18 +29,14 @@
         <div class="col-sm-6">
           <input type="date" class="form-control" name="sdate" id="sdate" formControlName="StartDate">
         </div>
-        <div *ngIf="submitted && f.StartDate.errors" class="col-sm-4 invalid-feedback">
-          <div *ngIf="f.StartDate.errors.required">StartDate is required</div>
-        </div>
+        <div *ngIf="formSubmitted && f.StartDate.errors" class="col-sm-4 invalid-feedback">StartDate is required</div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="ptask">End Date:</label>
         <div class="col-sm-6">
           <input type="date" class="form-control" name="sdate" id="sdate" formControlName="EndDate">
         </div>
-        <div *ngIf="submitted && f.EndDate.errors" class="col-sm-4 invalid-feedback">
-          <div *ngIf="f.EndDate.errors.required">EndDate is required</div>
-        </div>
+        <div *ngIf="formSubmitted && f.EndDate.errors" class="col-sm-4 invalid-feedback">EndDate is required</div>
       </div>
       <div class="form-group">
         <div class="col-sm-1">

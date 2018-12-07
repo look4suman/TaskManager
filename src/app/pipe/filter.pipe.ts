@@ -18,7 +18,7 @@ export class FilterPipe implements PipeTransform {
       if (taskSearch && it.Task.toLowerCase().indexOf(taskSearch.toLowerCase()) == -1)
         return false;
 
-      if (parentTaskSearch && it.ParentTask.toLowerCase().indexOf(parentTaskSearch.toLowerCase()) == -1)
+      if (parentTaskSearch && ((!it.ParentTask) || (it.ParentTask.toLowerCase().indexOf(parentTaskSearch.toLowerCase()) == -1)))
         return false;
 
       if (priorityFromSearch && it.Priority < priorityFromSearch)

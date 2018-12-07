@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { TaskModel } from '../model/task-model';
 import { TaskService } from '../services/task.service';
 import { Router } from '@angular/router';
@@ -11,41 +11,51 @@ import { Router } from '@angular/router';
 })
 export class AddTaskComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private service: TaskService, private router: Router) {
-
+  constructor(private service: TaskService, private router: Router) {
   }
 
-  registerForm: FormGroup;
-  submitted = false;
-  model: TaskModel;
+  addTaskForm: FormGroup;
+  formSubmitted = false;
+  taskModel: TaskModel;
+  tasks: TaskModel[];
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      Task: ['', Validators.required],
-      Priority: 0,
-      ParentTask: '',
-      StartDate: ['', [Validators.required]],
-      EndDate: ['', [Validators.required]]
+    this.addTaskForm = new FormGroup({
+      Task: new FormControl('', Validators.required),
+      Priority: new FormControl(1, Validators.min(1)),
+      ParentTask: new FormControl(''),
+      StartDate: new FormControl('', Validators.required),
+      EndDate: new FormControl('', Validators.required)
+
     });
+    this.PopulateDropdown();
   }
 
-  get f() { return this.registerForm.controls; }
+  get f() { return this.addTaskForm.controls; }
+
+  PopulateDropdown() {
+    this.service.getTasks().subscribe(
+      o => {
+        this.tasks = o;
+      }
+    );
+  }
 
   onSubmit() {
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.registerForm.invalid) {
-      return;
-    }
-    else {
-      this.model = new TaskModel(this.registerForm.value);
-      this.service.addTask(this.model).subscribe();
+    this.formSubmitted = true;
+    if (!this.addTaskForm.invalid) {
+      this.taskModel = new TaskModel();
+      this.taskModel.Task = this.addTaskForm.value.Task;
+      this.taskModel.Priority = this.addTaskForm.value.Priority;
+      this.taskModel.ParentTask = this.addTaskForm.value.ParentTask;
+      this.taskModel.StartDate = this.addTaskForm.value.StartDate;
+      this.taskModel.EndDate = this.addTaskForm.value.EndDate;
+      this.service.addTask(this.taskModel).subscribe(() => { this.router.navigate(['']); });
     }
   }
 
   onReset() {
-    this.registerForm.reset();
+    this.addTaskForm.reset();
   }
 
 }

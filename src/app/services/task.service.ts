@@ -3,6 +3,7 @@ import { TaskModel } from '../model/task-model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,15 @@ export class TaskService {
   addTask(model: TaskModel): Observable<object> {
     let url = this.baseUrl + 'AddTask';
     return this.http.post(url, model);
+  }
+
+  updateTask(model: TaskModel): Observable<object> {
+    let url = this.baseUrl + 'UpdateTask';
+    return this.http.post(url, model);
+  }
+
+  endTask(Id: number): Observable<object> {
+    let url = this.baseUrl + 'EndTask/' + Id;
+    return this.http.delete(url);
   }
 }

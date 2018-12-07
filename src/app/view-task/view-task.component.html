@@ -58,10 +58,11 @@
         </td>
         <td>
           <input type="button" value="Edit" style="background:grey ;font-weight:bolder" class="btn form-control button"
-            (click)="redirect(task.TaskId)">
+            (click)="redirect(task.TaskId)" [disabled]="!task.IsEditable">
         </td>
         <td>
-          <input type="button" value="End Task" style="background:grey ;font-weight:bolder" class="btn form-control button">
+          <input type="button" value="End Task" style="background:grey ;font-weight:bolder" class="btn form-control button"
+            (click)="endTask(task.TaskId)" [disabled]="!task.IsEditable">
         </td>
       </tr>
     </tbody>

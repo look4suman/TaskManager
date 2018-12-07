@@ -35,4 +35,10 @@ export class ViewTaskComponent implements OnInit {
     this.router.navigate(['./update/' + taskId]);
   }
 
+  endTask(taskId: number): void {
+    this.service.endTask(taskId).subscribe(
+    );
+    this.router.navigate(['']);
+  }
+
 }
