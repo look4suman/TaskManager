@@ -42,12 +42,11 @@
         <div class="col-sm-1">
         </div>
         <div class="col-sm-3">
-          <input type="submit" value="Add Task" style="background:grey ;font-weight:bolder" class="btn form-control button"
-            [disabled]="!form?.valid">
+          <input type="submit" value="Add Task" style="background:grey ;font-weight:bolder" class="btn form-control button">
         </div>
         <div class="col-sm-3">
           <input type="button" value="Reset" style="background:grey ;font-weight:bolder" class="btn form-control button"
-            (click)='OnReset()'>
+            (click)="OnReset()">
         </div>
       </div>
     </form>

@@ -54,7 +54,7 @@ export class AddTaskComponent implements OnInit {
     }
   }
 
-  onReset() {
+  OnReset() {
     this.addTaskForm.reset();
   }
 
