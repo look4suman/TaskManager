@@ -65,4 +65,8 @@ export class UpdateTaskComponent implements OnInit {
       });
     }
   }
+
+  onCancel(){
+    this.router.navigate(['']);
+  }
 }

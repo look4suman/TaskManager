@@ -38,10 +38,14 @@
         <div *ngIf="formSubmitted && f.EndDate.errors" class="col-sm-4 invalid-feedback">EndDate is required</div>
       </div>
       <div class="form-group">
-        <div class="col-sm-3">
+        <div class="col-sm-2">
         </div>
         <div class="col-sm-3">
-          <input type="submit" value="Update Task" style="background:grey; font-weight:bolder" class="btn form-control">
+          <input type="submit" value="Update" style="background:grey; font-weight:bolder" class="btn form-control">
+        </div>
+        <div class="col-sm-3">
+          <input type="button" value="Cancel" style="background:grey; font-weight:bolder" class="btn form-control"
+          (click)="onCancel()">
         </div>
       </div>
     </form>
